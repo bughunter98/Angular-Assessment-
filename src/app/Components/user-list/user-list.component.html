@@ -1,0 +1,19 @@
+<body>
+  <h1>List Of Users</h1>
+  <div class="container">
+    <div class="row">
+      <ng-container *ngFor="let user of users">
+        <div class="card col-md-3">
+          <p><strong>Name : </strong> {{ user.name }}</p>
+          <p><strong>Email : </strong>{{ user.email }}</p>
+          <p><strong>Address : </strong>{{ user.address }}</p>
+          <div class="button">
+            <button class="btn btn-danger" (click)="onDelete(user.username)">
+              Delete
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,214 @@
+<div>
+  <form #registrationForm="ngForm">
+    <h1>Create Account</h1>
+    
+    <div class="form-group">
+      <table>
+        <tr>
+          <td><label for="InputUserName">UserName *:</label></td>
+          <td>
+            <input
+              #username="ngModel"
+              type="text"
+              name="username"
+              class="form-control"
+              id="exampleInputUserName"
+              placeholder="Enter User Name"
+              required
+              minlength="7"
+              [(ngModel)]="user.username"
+            />
+          </td>
+          <div
+            *ngIf="username.touched && username.invalid"
+            class="alert alert-danger"
+          >
+            UserName Required
+          </div>
+          <div *ngIf="username.errors?.minlength">UserName is Invalid</div>
+        </tr>
+
+        <tr>
+          <td><label for="InputPassword1">Password *:</label></td>
+          <td>
+            <input
+              #password="ngModel"
+              type="password"
+              name="pwd"
+              class="form-control"
+              id="exampleInputPassword1"
+              placeholder="Password"
+              required
+              [(ngModel)]="user.password"
+              minlength="7"
+              maxlength="12"
+            />
+          </td>
+          <div
+            *ngIf="password.touched && password.invalid"
+            class="alert alert-danger"
+          >
+            Password Required
+          </div>
+          <div *ngIf="password.errors?.minlength || password.errors?.maxlength">
+            Password is Invalid
+          </div>
+        </tr>
+        <tr>
+          <td><label for="InputName">Name *:</label></td>
+          <td>
+            <input
+              #name="ngModel"
+              type="text"
+              name="name"
+              class="form-control"
+              id="exampleInputName"
+              placeholder="Enter Name"
+              required
+              minlength="3"
+              pattern="^[a-zA-Z]+$"
+              [(ngModel)]="user.name"
+            />
+          </td>
+          <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+            Name Required
+          </div>
+          <div *ngIf="name.errors?.pattern || name.errors?.minlength">
+            Name Invalid .
+          </div>
+        </tr>
+        <tr>
+          <td><label for="InputDate">Date Of Birth *:</label></td>
+          <td>
+            <input
+              #dob="ngModel"
+              type="date"
+              class="form-control"
+              name="dob"
+              required
+              [(ngModel)]="user.dob"
+            />
+          </td>
+          <div *ngIf="dob.touched && dob.invalid" class="alert alert-danger">
+            Date of Birth Required
+          </div>
+        </tr>
+        <tr>
+          <td><label for="InputAddress">Address :</label></td>
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              name="address"
+              [(ngModel)]="user.address"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td><label for="InputEmail1">Email address *: </label></td>
+          <td>
+            <input
+              #emailId="ngModel"
+              type="email"
+              name="emailId"
+              class="form-control"
+              id="exampleInputEmail"
+              aria-describedby="emailHelp"
+              placeholder="Enter email"
+              required
+              [(ngModel)]="user.email"
+              pattern="[a-zA-Z0-9_\-\.]+[@][a-z]+[\.][a-z]{2,3}"
+            />
+          </td>
+          <div
+            *ngIf="emailId.touched && emailId.invalid"
+            class="alert alert-danger"
+          >
+            Email Id Required
+          </div>
+          <div *ngIf="emailId.errors?.pattern">Email Id Invalid</div>
+        </tr>
+        <tr>
+          <td>
+            <label for="InputGender">Gender *:</label>
+          </td>
+
+          <td>
+            <div class="form-check">
+              <input
+                #gender="ngModel"
+                type="radio"
+                value="Male"
+                class="form-check-input"
+                id="gender"
+                name="gender"
+                [(ngModel)]="user.gender"
+              />
+              <label class="form-check-label" for="materialChecked">Male</label>
+            </div>
+            <div class="form-check">
+              <input
+                #gender="ngModel"
+                type="radio"
+                value="Female"
+                class="form-check-input"
+                id="gender"
+                name="gender  "
+                [(ngModel)]="user.gender"
+                required
+              />
+              <label class="form-check-label" for="materialChecked"
+                >Female</label
+              >
+            </div>
+            <div
+              *ngIf="!gender.touched && gender.invalid"
+              class="alert alert-danger" 
+            >
+              Gender Required
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="language"> Language *:</label></td>
+          <td>
+            <select
+              #language="ngModel"
+              name="language"
+              id="language"
+              class="language"
+              [(ngModel)]="user.language"
+              multiple required
+            >
+              <option value="English">English</option>
+              <option value="Telugu">Telugu</option>
+              <option value="French">French</option>
+              <option value="Hindi">Hindi</option>
+            </select>
+            <div *ngIf="!user.language && language.touched && language.invalid">
+              English is Default Language . Please Select to Proceed
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <button
+            type="submit"
+            [disabled]="!registrationForm.valid"
+            class="btn btn-primary"
+            (click)="addUser()"
+          >
+            Submit
+          </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h5>Note: fields marked with * are to be filled mandatorily</h5>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </form>
+</div>
